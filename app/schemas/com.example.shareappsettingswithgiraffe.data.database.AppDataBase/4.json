@@ -1,0 +1,224 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "9d709fd94be0e06c421b2734e9a0c594",
+    "entities": [
+      {
+        "tableName": "ShareEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`secId` TEXT NOT NULL, `shortName` TEXT NOT NULL, `fullName` TEXT NOT NULL, `isFavorite` INTEGER NOT NULL, PRIMARY KEY(`secId`))",
+        "fields": [
+          {
+            "fieldPath": "secId",
+            "columnName": "secId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shortName",
+            "columnName": "shortName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fullName",
+            "columnName": "fullName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "secId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ShareHistory",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`historyId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `historyDate` TEXT NOT NULL, `historyClosePrice` REAL NOT NULL, `secId` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "historyId",
+            "columnName": "historyId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "historyDate",
+            "columnName": "historyDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "historyClosePrice",
+            "columnName": "historyClosePrice",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secId",
+            "columnName": "secId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "historyId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ShareNews",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`newsId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `changeDirection` TEXT NOT NULL, `changePercent` TEXT NOT NULL, `changePeriod` TEXT NOT NULL, `comparisonTarget` TEXT NOT NULL, `secId` TEXT NOT NULL, `currentPrice` REAL NOT NULL DEFAULT 0)",
+        "fields": [
+          {
+            "fieldPath": "newsId",
+            "columnName": "newsId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changeDirection",
+            "columnName": "changeDirection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changePercent",
+            "columnName": "changePercent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changePeriod",
+            "columnName": "changePeriod",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "comparisonTarget",
+            "columnName": "comparisonTarget",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secId",
+            "columnName": "secId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentPrice",
+            "columnName": "currentPrice",
+            "affinity": "REAL",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "newsId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "NewsUpdateStrategy",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`strategyId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sharesType` TEXT NOT NULL, `changeDirection` TEXT NOT NULL, `comparisonTarget` TEXT NOT NULL, `changePeriod` TEXT NOT NULL, `changeThresholdPercent` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "strategyId",
+            "columnName": "strategyId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sharesType",
+            "columnName": "sharesType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changeDirection",
+            "columnName": "changeDirection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "comparisonTarget",
+            "columnName": "comparisonTarget",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changePeriod",
+            "columnName": "changePeriod",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changeThresholdPercent",
+            "columnName": "changeThresholdPercent",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "strategyId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "FirstLoad",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`isFirstCreatedId` INTEGER NOT NULL, `isFirstCreated` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`isFirstCreatedId`))",
+        "fields": [
+          {
+            "fieldPath": "isFirstCreatedId",
+            "columnName": "isFirstCreatedId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFirstCreated",
+            "columnName": "isFirstCreated",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "isFirstCreatedId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9d709fd94be0e06c421b2734e9a0c594')"
+    ]
+  }
+}
